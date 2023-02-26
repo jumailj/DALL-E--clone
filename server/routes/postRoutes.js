@@ -40,7 +40,7 @@ router.route('/').post(async (req, res) => {
       const newPost = await Post.create({
         name,
         prompt,
-        // photo: photoUrl,
+         photo: "https://images.template.net/wp-content/uploads/2016/04/27090026/Car-Wallpaper1.jpg",
       });
  
       res.status(200).json({ success: true, /*data: newPost*/ });
