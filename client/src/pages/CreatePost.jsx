@@ -19,8 +19,31 @@ const CreatePost = () => {
 
   const generateImage = async () => {
 
-  };
+    if(form.prompt){
+      try{
+        setGeneratingImg(true);
+        const respose = await fetch(
+          'http://localhost:8080/api/v1/dalle',
+           {  method : 'POST',
+              headers:{
+              'Content-Type': 'application/json'
+               },
+               body: JSON.stringify({prompt: form.prompt}),
+            })
 
+            const data = await respose.json();
+            setForm({ ...form, photo: `data:image/jpeg;base64, ${data.photo}`})
+            
+      }catch(error){
+          alert(error);
+      } finally{
+        setGeneratingImg(false);
+      }
+    } else {
+      alert('please enter a prompt');
+    }
+
+  };
 
   const handleSubmit = async(e)=>{
 
@@ -37,12 +60,15 @@ const CreatePost = () => {
 
   return (
     <section className="max-w-7xl mx-auto">
+     {/*primary-heading*/}
       <div>
         <h1 className="font-extrabold text-[#222328] text-[32px]">Create</h1>
         <p className="mt-2 text-[#666e75] text-[14px] max-w-[500px]">Generate an imaginative image through DALL-E AI and share it with the community</p>
       </div>
 
+
       <form className="mt-16 max-w-3xl" onSubmit={handleSubmit}>
+          {/*filed to input name*/}
         <div className="flex flex-col gap-5">
           <FormField
             labelName="Your Name"
@@ -53,6 +79,7 @@ const CreatePost = () => {
             handleChange={handleChange}
           />
 
+          {/*input area from prompt to generte image*/}
           <FormField
             labelName="Prompt"
             type="text"
