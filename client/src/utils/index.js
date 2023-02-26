@@ -9,3 +9,4 @@ export function getRandomPrompt(prompt) {
 
     return randomPrompt;
 }
+
