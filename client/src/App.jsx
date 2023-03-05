@@ -2,7 +2,9 @@ import React from 'react'
 import { BrowserRouter,Link, Route, Routes } from 'react-router-dom';
 import {logo} from './assets';
 
-import {Home, CreatePost} from './pages';
+import {Home, CreatePost, LoginPage} from './pages';
+
+
 
 const App=()=>{
   return(
@@ -15,7 +17,11 @@ const App=()=>{
       </Link>
 
       {/*Create button */}
+      <div className=" flex justify-between gap-5">
+      <Link to="/login-page" className="font-inter font-medium bg-[#b84712] text-white px-4 py-2 rounded-md">Login</Link>
       <Link to="/create-post" className="font-inter font-medium bg-[#12b886] text-white px-4 py-2 rounded-md">Create</Link>
+      </div>
+      
     </header>
 
 
@@ -24,6 +30,7 @@ const App=()=>{
       <Routes>
         <Route path="/" element={<Home />} /> {/*home page*/}
         <Route path="/create-post" element={<CreatePost />} />  {/* image generating page*/}
+        <Route path="/login-page" element={<LoginPage />} />  {/* image generating page*/}
       </Routes>
     </main>
     </BrowserRouter>
