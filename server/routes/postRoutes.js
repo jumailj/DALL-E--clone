@@ -43,7 +43,7 @@ router.route('/').post(async (req, res) => {
          photo: "https://images.template.net/wp-content/uploads/2016/04/27090026/Car-Wallpaper1.jpg",
       });
  
-      res.status(200).json({ success: true, /*data: newPost*/ });
+      res.status(200).json({ success: true, data: newPost });
     } catch (err) {
         console.log('error found');
         console.log(err.message);
